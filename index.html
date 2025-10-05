@@ -91,8 +91,9 @@
     console.log("⏱ 用户停留时长（秒）：", stayTime,currentEmail);
 		}
 
-	fetch("https://formspree.io/f/xwprqoyr", {
+	fetch("https://script.google.com/macros/s/AKfycby6lV4EajWqTCBdft1kDyPqFLpM5b51Tfkq2tYpT1VvhrUdgq_DXRDMazAmkz1454U/exec", {
   method: "POST",
+  mode: "no-cors",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     email: currentEmail,
@@ -100,13 +101,14 @@
     stayTime: stayTime
   })
 });
-
-    console.log("📤 数据已发送到 Google Sheet");
+.then(() => console.log("✅ 数据已写入 Google Sheet"))
+.catch(err => console.error("❌ 上传失败:", err));
 	});
   </script>
 
 </body>
 </html>
+
 
 
 
