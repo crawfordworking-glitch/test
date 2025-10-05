@@ -93,6 +93,7 @@
 
 	fetch("https://script.google.com/macros/s/AKfycbz4zTQN2ozHYRcGH-npDZKmaGucAh89xkkn8b42hDf0g0j0ev4fZhM9mxq4qV3wd0M/exec", {
       method: "POST",
+	mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: currentEmail,
@@ -107,6 +108,7 @@
 
 </body>
 </html>
+
 
 
 
