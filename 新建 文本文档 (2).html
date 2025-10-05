@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>订阅课程通知</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .success-message {
+      margin-top: 1rem;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>订阅课程通知📧</h2>
+    <form id="email-form">
+      <input type="email" id="email" placeholder="请输入您的邮箱" required />
+      <button type="submit">提交</button>
+    </form>
+    <div class="success-message" id="success-msg" style="display:none;">✅ 提交成功！</div>
+  </div>
+
+  <script>
+    // 🧩 新增：初始化追踪变量
+    let clickCount = 0;
+	let currentEmail = "";
+    const startTime = Date.now(); // 记录进入页面的时间戳
+
+    // 监听表单提交
+    document.getElementById("email-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      
+      // 增加点击次数
+      clickCount++;
+	  currentEmail = email;
+      console.log("📩 邮箱提交：", email);
+      console.log("🔢 提交按钮点击次数：", clickCount,currentEmail);
+
+      // 显示成功提示
+      document.getElementById("email-form").reset();
+      document.getElementById("success-msg").style.display = "block";
+    });
+
+    // 🧩 新增：监听页面关闭或刷新
+  let stayTime = 0;
+	document.addEventListener("visibilitychange", function () {
+	if (document.visibilityState === "hidden") {
+    stayTime = Math.round((Date.now() - startTime) / 1000);
+    console.log("⏱ 用户停留时长（秒）：", stayTime,currentEmail);
+		}
+	});
+  </script>
+
+</body>
+</html>
