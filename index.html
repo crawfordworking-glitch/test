@@ -62,6 +62,12 @@
   </div>
 
   <script>
+	let visitorId = localStorage.getItem("visitorId");
+	if (!visitorId) {
+  visitorId = "visitor-" + Math.random().toString(36).substring(2, 10);
+  localStorage.setItem("visitorId", visitorId);
+	}
+	console.log("🆔 当前访客ID：", visitorId);
     // 🧩 新增：初始化追踪变量
     let clickCount = 0;
 	let currentEmail = "";
@@ -91,11 +97,12 @@
     console.log("⏱ 用户停留时长（秒）：", stayTime,currentEmail);
 		}
 
-	fetch("https://script.google.com/macros/s/AKfycby6lV4EajWqTCBdft1kDyPqFLpM5b51Tfkq2tYpT1VvhrUdgq_DXRDMazAmkz1454U/exec", {
+	fetch("https://script.google.com/macros/s/AKfycbyc84E1L4qPSSrkEm-YiG-LF2d-WsZHq-UmHm6Km3mohi50LhTIG6Z-YW46af9W7so/exec", {
   method: "POST",
   mode: "no-cors",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
+  body: JSON.stringify({	
+  	visitorId: visitorId,
     email: currentEmail,
     clickCount: clickCount,
     stayTime: stayTime
@@ -108,6 +115,7 @@
 
 </body>
 </html>
+
 
 
 
