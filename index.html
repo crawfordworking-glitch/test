@@ -90,8 +90,21 @@
     stayTime = Math.round((Date.now() - startTime) / 1000);
     console.log("⏱ 用户停留时长（秒）：", stayTime,currentEmail);
 		}
+
+	fetch("https://script.google.com/macros/s/你的脚本ID/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: currentEmail,
+        clickCount: clickCount,
+        stayTime: stayTime
+      })
+    });
+
+    console.log("📤 数据已发送到 Google Sheet");
 	});
   </script>
 
 </body>
 </html>
+
