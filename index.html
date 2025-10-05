@@ -91,13 +91,13 @@
     console.log("⏱ 用户停留时长（秒）：", stayTime,currentEmail);
 		}
 
-	fetch("https://script.google.com/macros/s/AKfycbzB4L7zsBV4RnsC4MKFBg8fMVJtTJCs4iey7DYsbOi5vNFkl4priKd07eQjDcD6ASg/exec", {
+	fetch("https://formspree.io/f/mrgjwkad", {
   method: "POST",
-  mode: "no-cors",
-  body: new URLSearchParams({
-    "entry.123456789": currentEmail,
-    "entry.987654321": clickCount,
-    "entry.555555555": stayTime
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    email: currentEmail,
+    clickCount: clickCount,
+    stayTime: stayTime
   })
 });
 
@@ -107,6 +107,7 @@
 
 </body>
 </html>
+
 
 
 
