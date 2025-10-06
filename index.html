@@ -63,6 +63,7 @@
 
   <script>
 	let visitorId = localStorage.getItem("visitorId");
+	const browserInfo = navigator.userAgent;
 	if (!visitorId) {
   visitorId = "visitor-" + Math.random().toString(36).substring(2, 10);
   localStorage.setItem("visitorId", visitorId);
@@ -88,7 +89,7 @@
       document.getElementById("email-form").reset();
       document.getElementById("success-msg").style.display = "block";
     });
-
+	
     // 🧩 新增：监听页面关闭或刷新
   let stayTime = 0;
 	document.addEventListener("visibilitychange", function () {
@@ -105,7 +106,8 @@
   	visitorId: visitorId,
     email: currentEmail,
     clickCount: clickCount,
-    stayTime: stayTime
+    stayTime: stayTime,
+	browser: browserInfo
   })
 })
 .then(() => console.log("✅ 数据已写入 Google Sheet"))
@@ -115,6 +117,7 @@
 
 </body>
 </html>
+
 
 
 
